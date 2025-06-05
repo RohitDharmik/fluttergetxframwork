@@ -74,3 +74,6 @@ Thumbs.db
 # User-specific settings
 **/.env
 **/.firebase/
+
+# FVM Version Cache
+.fvm/

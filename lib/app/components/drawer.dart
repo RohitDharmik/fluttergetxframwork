@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_mvc_framework/app/components/widgets.dart';
+import 'package:flutter_getx_mvc_framework/app/controllers/location_controller.dart';
+import 'package:flutter_getx_mvc_framework/app/services/googlemappage.dart';
 import 'package:flutter_getx_mvc_framework/app/utils/helper.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +13,8 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
+  @override
+  final LocationController locationController = Get.put(LocationController());
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -187,8 +191,31 @@ class _CustomDrawerState extends State<CustomDrawer> {
             // ),
 
             ListTile(
+              leading: const Icon(Icons.add_location_alt_outlined),
+              title: const Text("Google Location"),
+              trailing: const Icon(Icons.navigate_next_outlined),
+              onTap: () async {
+                await locationController.getCurrentLocation();
+                final pos = locationController.currentPosition.value;
+                final address = locationController.currentAddress.value ?? '';
+                if (pos != null) {
+                  Get.to(() => GoogleMapPage(
+                        latitude: pos.latitude,
+                        longitude: pos.longitude,
+                      ));
+                } else {
+                  Get.snackbar(
+                    "Location Error",
+                    "Could not get location.",
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.logout_outlined),
               title: const Text("Logout"),
+              trailing: const Icon(Icons.navigate_next_outlined),
               onTap: () async {
                 logoutPopUp(context: context);
               },
