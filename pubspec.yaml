@@ -16,9 +16,18 @@ dependencies:
   dio: ^5.8.0+1
   get: ^4.7.2
   get_storage: ^2.1.1
-  connectivity_plus: ^6.1.4
   flutter_svg: ^2.1.0
   animated_notch_bottom_bar: ^1.0.3
+  flutter_native_splash: ^2.4.6
+  image_picker: ^1.1.2
+  intl: ^0.20.2
+  flutter_screenutil: ^5.9.3
+  firebase_core: ^3.13.1
+  firebase_analytics: ^11.4.6
+  firebase_crashlytics: ^4.3.6
+  http_parser: ^4.1.2
+  path: ^1.9.1
+  firebase_messaging: ^15.2.6
   # google_maps_flutter: ^2.5.0 # Uncomment if you use Google Maps widget
 
 dev_dependencies:
@@ -26,6 +35,7 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_icons: ^0.14.3
   rename_app: ^1.6.3
+  flutter_lints: ^5.0.0
 
 flutter_launcher_icons:
   android: "launcher_icon"
@@ -36,8 +46,11 @@ flutter_launcher_icons:
   web:
    generate: true
    image_path: "assets/icon/icon.png"
-  flutter_lints: ^5.0.0
+flutter_native_splash:
+  image: assets/icon/icon.png
+  color: "#ff5fff"
 
+ # 
 flutter:
   uses-material-design: true
   # example:
@@ -53,6 +66,7 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   assets:
+    - assets/
     - assets/icon/
+    - assets/icon/icon.png
     - assets/images/
-    - assets/images/google-icon.png

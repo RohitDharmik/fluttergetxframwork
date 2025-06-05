@@ -1,3 +1,4 @@
+import 'package:flutter_getx_mvc_framework/app/components/splash_screen.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/customer_form_view.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/dashboard_view.dart';
@@ -15,18 +16,18 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN_PAGE;
+  static const INITIAL = Routes.SplashScreen;
 
   static final routes = [
-    GetPage(
-      name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
-    ),
     GetPage(
       name: _Paths.LOGIN_PAGE,
       page: () => LoginPageView(),
       binding: LoginPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
     ),
     GetPage(
       name: _Paths.DASHBOARD,
@@ -47,6 +48,10 @@ class AppPages {
       name: _Paths.SettingView,
       page: () => const SettingView(),
       binding: DashboardBinding(),
+    ),
+    GetPage(
+      name: _Paths.SplashScreen,
+      page: () => const SplashScreen(),
     ),
   ];
 }
