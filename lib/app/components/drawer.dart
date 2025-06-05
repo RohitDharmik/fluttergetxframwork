@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_mvc_framework/app/components/widgets.dart';
+import 'package:flutter_getx_mvc_framework/app/utils/helper.dart';
 import 'package:get/get.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -22,6 +23,41 @@ class _CustomDrawerState extends State<CustomDrawer> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
+            Container(
+              height: kHeight * 0.3,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.grey.shade50,
+                    backgroundImage: NetworkImage(
+                      'https://example.com/profile_pic.png', // Replace with actual profile pic URL
+                    ),
+                    child: Icon(
+                      Icons.person,
+                      size: 40,
+                      color: Theme.of(context).primaryColorDark,
+                    ),
+                  ),
+                  SizedBox(height: kHeight * 0.02),
+                  Text(
+                    'User Name', // Replace with actual user name
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: kHeight * 0.02,
+            ),
             // UserAccountsDrawerHeader(
             //   currentAccountPictureSize: const Size(70, 70),
             //   arrowColor: kwhiteColor,

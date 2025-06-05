@@ -53,3 +53,12 @@ class AppTheme {
     ),
   );
 }
+
+class PrimaryColors {
+  Color kPrimaryColor = Color(0xFF6200EE);
+  Color kSecondaryColor = Color(0xFF03DAC6);
+  Color kBackgroundColor = Color(0xFFF5F5F5);
+  Color kTextColor = Color(0xFF212121);
+  Color kWhiteColor = Colors.white;
+  Color kBlackColor = Colors.black;
+}
