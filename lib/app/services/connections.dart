@@ -19,7 +19,7 @@ class ApiClient extends GetxService {
   final int timeoutInSeconds = 30;
 
   // String token;
-  final Map<String, String> _mainHeaders = {};
+  final Map<String, String> _mainHeaders = {'Content-Type': 'application/json'};
 
   // ApiClient({ }) {
   //   // token = sharedPreferences.getString(AppConstants.TOKEN);
@@ -55,6 +55,7 @@ class ApiClient extends GetxService {
             headers: headers ?? _mainHeaders,
           )
           .timeout(Duration(seconds: timeoutInSeconds));
+      print(headers ?? _mainHeaders);
       return handleResponse(response, uri);
     } catch (e) {
       return const Response(statusCode: 1, statusText: noInternetMessage);
@@ -63,19 +64,27 @@ class ApiClient extends GetxService {
 
   Future<Response> postData(String uri, Map<String, dynamic> body,
       {Map<String, String>? headers}) async {
+    print(headers);
+
+    print("headers$headers");
     try {
       debugPrint('====> API Call: $uri\nHeader: $_mainHeaders');
       debugPrint('====> API Body: $body');
+      debugPrint('====> API Body: $appBaseUrl + $uri');
       http.Response response = await http
           .post(
             Uri.parse(appBaseUrl + uri),
             body: body,
-            encoding: Encoding.getByName("utf-8"),
+            // encoding: Encoding.getByName("utf-8"),
             headers: headers ?? _mainHeaders,
           )
           .timeout(Duration(seconds: timeoutInSeconds));
+      print(headers ?? _mainHeaders);
       return handleResponse(response, uri);
     } catch (e) {
+      {
+        debugPrint('Error in postData: $e');
+      }
       return const Response(statusCode: 1, statusText: noInternetMessage);
     }
   }

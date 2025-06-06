@@ -1,4 +1,4 @@
-package com.example.text3flutter
+package com.test.demo
 
 import io.flutter.embedding.android.FlutterActivity
 

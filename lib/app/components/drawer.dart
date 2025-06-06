@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_mvc_framework/app/components/widgets.dart';
 import 'package:flutter_getx_mvc_framework/app/controllers/location_controller.dart';
@@ -39,8 +40,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   CircleAvatar(
                     radius: 40,
                     backgroundColor: Colors.grey.shade50,
-                    backgroundImage: NetworkImage(
-                      'https://example.com/profile_pic.png', // Replace with actual profile pic URL
+                    backgroundImage: CachedNetworkImageProvider(
+                      'https://example.com/profile_pic.png',
                     ),
                     child: Icon(
                       Icons.person,
