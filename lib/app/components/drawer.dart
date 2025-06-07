@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_mvc_framework/app/components/widgets.dart';
 import 'package:flutter_getx_mvc_framework/app/controllers/location_controller.dart';
-import 'package:flutter_getx_mvc_framework/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:flutter_getx_mvc_framework/app/utils/helper.dart';
 import 'package:get/get.dart';
 
@@ -64,8 +63,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
             SizedBox(
               height: kHeight * 0.02,
             ),
-         
-
             ListTile(
               leading: const Icon(Icons.add_location_alt_outlined),
               title: const Text("Google Location"),
@@ -89,6 +86,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     snackPosition: SnackPosition.BOTTOM,
                   );
                 }
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.check_circle_outline),
+              title: const Text("Completed Tasks"),
+              trailing: const Icon(Icons.navigate_next_outlined),
+              onTap: () async {
+                Get.toNamed('/customer-formView');
               },
             ),
             ListTile(

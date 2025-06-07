@@ -38,7 +38,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CustomerFormView,
-      page: () => const CustomerFormView(),
+      page: () =>   CustomerFormView(),
       binding: DashboardBinding(),
     ),
     GetPage(

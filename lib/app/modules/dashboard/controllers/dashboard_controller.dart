@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/modules/tasks.dart';
-import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/customer_form_view.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/profile_page_view.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/setting_view.dart';
@@ -19,7 +18,7 @@ class DashboardController extends GetxController {
 
   final List<Widget> bottomBarPages = [
     DashboardView(),
-    CustomerFormView(),
+    ProfilePageView(),
     ProfilePageView(),
     SettingView(),
   ];
@@ -31,6 +30,7 @@ class DashboardController extends GetxController {
   }
 
   final tasks = <Task>[].obs;
+  final completedTask = <CompletedTask>[].obs;
   final storage = GetStorage();
 
   @override
@@ -44,6 +44,7 @@ class DashboardController extends GetxController {
 
     saveTasks();
   }
+
   void updateTask(int index, String title, String description) {
     if (index < 0 || index >= tasks.length) return;
     tasks[index].title = title;
@@ -51,6 +52,7 @@ class DashboardController extends GetxController {
     tasks.refresh();
     saveTasks();
   }
+
   void toggleTask(int index) {
     tasks[index].isCompleted = !tasks[index].isCompleted;
     tasks.refresh();
@@ -58,6 +60,13 @@ class DashboardController extends GetxController {
   }
 
   void deleteTask(int index) {
+    if (index < 0 || index >= tasks.length) return;
+    final task = tasks[index];
+    completedTask.add(CompletedTask(
+      title: task.title,
+      description: task.description,
+      
+    ));
     tasks.removeAt(index);
     saveTasks();
   }
