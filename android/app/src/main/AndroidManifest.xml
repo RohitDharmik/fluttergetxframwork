@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-    <application android:label="flutter framwork" android:name="${applicationName}"
+    <application android:label="Task Manager" android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity android:name=".MainActivity" android:exported="true"
             android:launchMode="singleTop" android:taskAffinity=""

@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_mvc_framework/app/components/widgets.dart';
 import 'package:flutter_getx_mvc_framework/app/controllers/location_controller.dart';
-import 'package:flutter_getx_mvc_framework/app/services/googlemappage.dart';
+import 'package:flutter_getx_mvc_framework/app/modules/login_page/controllers/login_page_controller.dart';
 import 'package:flutter_getx_mvc_framework/app/utils/helper.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +16,7 @@ class CustomDrawer extends StatefulWidget {
 class _CustomDrawerState extends State<CustomDrawer> {
   @override
   final LocationController locationController = Get.put(LocationController());
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -155,41 +156,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
             //           );
             //         },
             //       ),
-            ListTile(
-              leading: const Icon(Icons.feedback_outlined),
-              title: const Text("Feedback"),
-              trailing: const Icon(Icons.navigate_next_outlined),
-              onTap: () {
-                Get.toNamed('/profile-pageView');
-              },
-            ),
-            // ListTile(
-            //   leading: const Icon(Icons.touch_app_outlined),
-            //   title: const Text("About app"),
-            //   trailing: const Icon(Icons.navigate_next_outlined),
-            //   onTap: () {
-            //     Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const AboutUs()));
-            //   },
-            // ),
-            // ListTile(
-            //   leading: const Icon(Icons.share_outlined),
-            //   title: const Text("Share app"),
-            //   trailing: const Icon(Icons.navigate_next_outlined),
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //     Share.share('https://play.google.com/store/apps/details?id=app.ordermanagement.programmics');
-            //   },
-            // ),
-
-            // ListTile(
-            //   leading: const Icon(Icons.announcement_outlined),
-            //   title: const Text("Terms and conditions"),
-            //   trailing: const Icon(Icons.navigate_next_outlined),
-            //   onTap: () {
-            //     Navigator.of(context)
-            //         .push(MaterialPageRoute(builder: (BuildContext context) => const TermsnCondition()));
-            //   },
-            // ),
 
             ListTile(
               leading: const Icon(Icons.add_location_alt_outlined),
@@ -198,12 +164,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
               onTap: () async {
                 await locationController.getCurrentLocation();
                 final pos = locationController.currentPosition.value;
-                 
+
                 if (pos != null) {
-                  Get.to(() => GoogleMapPage(
-                        latitude: pos.latitude,
-                        longitude: pos.longitude,
-                      ));
+                  Get.defaultDialog(
+                    title: "Your Location",
+                    middleText:
+                        "Latitude: ${pos.latitude}\nLongitude: ${pos.longitude}",
+                    textConfirm: "OK",
+                    onConfirm: () => Get.back(),
+                  );
                 } else {
                   Get.snackbar(
                     "Location Error",

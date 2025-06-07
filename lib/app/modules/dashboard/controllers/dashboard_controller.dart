@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_getx_mvc_framework/app/modules/dashboard/modules/tasks.dart'; 
+import 'package:flutter_getx_mvc_framework/app/modules/dashboard/modules/tasks.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/customer_form_view.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/profile_page_view.dart';
@@ -29,7 +29,8 @@ class DashboardController extends GetxController {
     // Clean up resources if needed
     super.onClose();
   }
-   final tasks = <Task>[].obs;
+
+  final tasks = <Task>[].obs;
   final storage = GetStorage();
 
   @override
@@ -38,8 +39,9 @@ class DashboardController extends GetxController {
     loadTasks();
   }
 
-  void addTask(String title) {
-    tasks.add(Task(title: title));
+  void addTask(String title, String discription) {
+    tasks.add(Task(title: title, description: discription));
+
     saveTasks();
   }
 
@@ -61,7 +63,8 @@ class DashboardController extends GetxController {
   void loadTasks() {
     final stored = storage.read<List>('tasks');
     if (stored != null) {
-      tasks.assignAll(stored.map((e) => Task.fromJson(Map<String, dynamic>.from(e))));
+      tasks.assignAll(
+          stored.map((e) => Task.fromJson(Map<String, dynamic>.from(e))));
     }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_mvc_framework/app/utils/helper.dart';
+import 'package:get/get.dart';
 
 inputBorder({Color? color, double? radius}) {
   return OutlineInputBorder(
@@ -51,12 +52,7 @@ Future logoutPopUp({required BuildContext context}) async {
               onPressed: () async {
                 print("Clearing Data");
                 await box.erase();
-                try {
-                  // await hiveDB.clear();
-                  print("hiveDB Clearing Error  ");
-                } catch (e) {
-                  print("$e");
-                }
+                Get.offAllNamed("/login");
 
                 print("Data Cleared");
               },

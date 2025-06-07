@@ -4,8 +4,15 @@ import 'package:get/get.dart';
 
 class RegistrationController extends GetxController {
   //TODO: Implement RegistrationController
+// your existing imports and class definition
 
-  final count = 0.obs;
+  // your existing code
+
+  void register({required String email, required String password}) {
+    // TODO: Implement registration logic here
+    print('Registering user: $email');
+  }
+
   final email = ''.obs;
   final generatedOtp = ''.obs;
 
@@ -20,5 +27,8 @@ class RegistrationController extends GetxController {
     return enteredOtp == generatedOtp.value;
   }
 
-  void increment() => count.value++;
+  void clearOtp() {
+    generatedOtp.value = '';
+    email.value = '';
+  }
 }
