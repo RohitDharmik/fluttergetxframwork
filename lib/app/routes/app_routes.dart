@@ -11,6 +11,7 @@ abstract class Routes {
   static const ProfilePageView = _Paths.ProfilePageView;
   static const SettingView = _Paths.SettingView;
   static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
+  static const REGISTRATION = _Paths.REGISTRATION;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const ProfilePageView = '/profile-pageView';
   static const SettingView = '/setting-view';
   static const SPLASHSCREEN = '/splashscreen';
+  static const REGISTRATION = '/registration';
 }

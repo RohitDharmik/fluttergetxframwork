@@ -1,22 +1,24 @@
-import 'package:flutter_getx_mvc_framework/app/components/splash_screen.dart';
-import 'package:flutter_getx_mvc_framework/app/modules/dashboard/bindings/dashboard_binding.dart';
-import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/customer_form_view.dart';
-import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/profile_page_view.dart';
-import 'package:flutter_getx_mvc_framework/app/modules/dashboard/views/setting_view.dart';
 import 'package:get/get.dart';
 
+import '../components/splash_screen.dart';
+import '../modules/dashboard/bindings/dashboard_binding.dart';
+import '../modules/dashboard/views/customer_form_view.dart';
+import '../modules/dashboard/views/dashboard_view.dart';
+import '../modules/dashboard/views/profile_page_view.dart';
+import '../modules/dashboard/views/setting_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login_page/bindings/login_page_binding.dart';
 import '../modules/login_page/views/login_page_view.dart';
+import '../modules/registration/bindings/registration_binding.dart';
+import '../modules/registration/views/registration_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SplashScreen;
+  static const INITIAL = Routes.LOGIN_PAGE;
 
   static final routes = [
     GetPage(
@@ -31,7 +33,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DASHBOARD,
-      page: () => const DashboardView(),
+      page: () => DashboardView(),
       binding: DashboardBinding(),
     ),
     GetPage(
@@ -52,6 +54,11 @@ class AppPages {
     GetPage(
       name: _Paths.SplashScreen,
       page: () => const SplashScreen(),
+    ),
+    GetPage(
+      name: _Paths.REGISTRATION,
+      page: () => const RegistrationView(),
+      binding: RegistrationBinding(),
     ),
   ];
 }

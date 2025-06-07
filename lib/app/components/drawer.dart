@@ -198,7 +198,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               onTap: () async {
                 await locationController.getCurrentLocation();
                 final pos = locationController.currentPosition.value;
-                final address = locationController.currentAddress.value ?? '';
+                 
                 if (pos != null) {
                   Get.to(() => GoogleMapPage(
                         latitude: pos.latitude,
