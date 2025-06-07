@@ -52,9 +52,7 @@ Future logoutPopUp({required BuildContext context}) async {
               onPressed: () async {
                 print("Clearing Data");
                 await box.erase();
-                Get.offAllNamed("/login");
-
-                print("Data Cleared");
+                await Get.offAllNamed("/login");
               },
               child: const Text(
                 "Logout",

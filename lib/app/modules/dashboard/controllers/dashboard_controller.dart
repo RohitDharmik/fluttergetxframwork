@@ -44,7 +44,13 @@ class DashboardController extends GetxController {
 
     saveTasks();
   }
-
+  void updateTask(int index, String title, String description) {
+    if (index < 0 || index >= tasks.length) return;
+    tasks[index].title = title;
+    tasks[index].description = description;
+    tasks.refresh();
+    saveTasks();
+  }
   void toggleTask(int index) {
     tasks[index].isCompleted = !tasks[index].isCompleted;
     tasks.refresh();

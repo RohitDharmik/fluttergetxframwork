@@ -91,6 +91,10 @@ class LoginPageView extends GetView<LoginPageController> {
                   backgroundColor: Colors.blueAccent,
                 ),
                 onPressed: () {
+                  controller.login(
+                    emailController.text.trim(),
+                    passwordController.text.trim(),
+                  );
                   showModalBottomSheet(
                     context: context,
                     isScrollControlled: true,
@@ -134,10 +138,18 @@ class LoginPageView extends GetView<LoginPageController> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   // Validate OTP here
-                                  controller.login(
-                                    emailController.text.trim(),
-                                    passwordController.text.trim(),
-                                  );
+
+                                  String otp = otpController.text.trim();
+                                  if (otp.isEmpty || otp.length != 6) {
+                                    Get.snackbar(
+                                      'Error',
+                                      'Please enter a valid 6-digit OTP',
+                                      snackPosition: SnackPosition.BOTTOM,
+                                    );
+                                    return;
+                                  }
+                                  controller.validateOtp(otp);
+
                                   // Optionally show success/failure message
                                 },
                                 child: const Text('Validate OTP'),

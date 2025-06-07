@@ -111,6 +111,12 @@ class DashboardView extends GetView<DashboardController> {
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: ListTile(
+                          trailing: IconButton(
+                            icon: const Icon(Icons.edit,
+                                color: Colors.blueAccent),
+                            onPressed: () =>
+                                _showEditTaskDialog(context, index),
+                          ),
                           leading: Checkbox(
                             value: task.isCompleted,
                             onChanged: (_) => controller.toggleTask(index),
@@ -151,6 +157,48 @@ class DashboardView extends GetView<DashboardController> {
         onPressed: () => _showAddTaskDialog(context),
         child: const Icon(Icons.add),
       ),
+    );
+  }
+
+// Add this method to DashboardView:
+  void _showEditTaskDialog(BuildContext context, int index) {
+    final task = controller.tasks[index];
+    textController.text = task.title;
+    descriptionController.text = task.description ?? '';
+    Get.defaultDialog(
+      title: 'Edit Task',
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextField(
+            controller: textController,
+            decoration: const InputDecoration(hintText: 'Task title'),
+          ),
+          const SizedBox(height: 12),
+          TextField(
+            controller: descriptionController,
+            decoration: const InputDecoration(hintText: 'Task description'),
+          ),
+        ],
+      ),
+      textConfirm: 'Update',
+      onConfirm: () {
+        if (textController.text.trim().isNotEmpty) {
+          controller.updateTask(
+            index,
+            textController.text.trim(),
+            descriptionController.text.trim(),
+          );
+          textController.clear();
+          descriptionController.clear();
+          Get.back();
+        }
+      },
+      textCancel: 'Cancel',
+      onCancel: () {
+        textController.clear();
+        descriptionController.clear();
+      },
     );
   }
 
@@ -196,24 +244,5 @@ class DashboardView extends GetView<DashboardController> {
   String _weekdayShort(int weekday) {
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     return days[weekday - 1];
-  }
-
-  String _monthName(int month) {
-    const months = [
-      '',
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
-    ];
-    return months[month];
   }
 }
